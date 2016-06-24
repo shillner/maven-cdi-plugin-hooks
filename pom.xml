@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.itemis</groupId>
+    <artifactId>org-parent</artifactId>
+    <version>1</version>
+  </parent>
+
+  <groupId>com.itemis.maven.plugins</groupId>
+  <artifactId>cdi-plugin-hooks</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+
+  <name>CDI Plugin Hooks</name>
+  <description>Provides some common hook implementations for CDI-based Maven plugins.</description>
+  <url>https://github.com/shillner/maven-cdi-plugin-hooks</url>
+  <inceptionYear>2016</inceptionYear>
+
+  <developers>
+    <developer>
+      <id>shillner</id>
+      <name>Stanley Hillner</name>
+      <organization>itemis AG</organization>
+      <organizationUrl>https://itemis.com/</organizationUrl>
+      <timezone>1</timezone>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/shillner/maven-cdi-plugin-hooks.git</connection>
+    <url>https://github.com/shillner/maven-cdi-plugin-hooks</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/shillner/maven-cdi-plugin-hooks/issues</url>
+  </issueManagement>
+
+  <properties>
+    <version.google-http-client>1.22.0</version.google-http-client> 
+    <version.guava>19.0</version.guava>
+    <version.java>1.6</version.java>
+    <version.cdi-plugin-utils>3.0.0</version.cdi-plugin-utils>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.itemis.maven.plugins</groupId>
+      <artifactId>cdi-plugin-utils</artifactId>
+      <version>${version.cdi-plugin-utils}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.http-client</groupId>
+      <artifactId>google-http-client</artifactId>
+      <version>${version.google-http-client}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${version.guava}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${version.java}</source>
+            <target>${version.java}</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>disable-java8-doclint</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <configuration>
+                <additionalparam>-Xdoclint:none</additionalparam>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
+</project>
