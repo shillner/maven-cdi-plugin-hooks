@@ -26,7 +26,7 @@ import com.itemis.maven.plugins.cdi.annotations.ProcessingStep;
 import com.itemis.maven.plugins.cdi.annotations.RollbackOnError;
 import com.itemis.maven.plugins.cdi.logging.Logger;
 
-@ProcessingStep(id = "mvn")
+@ProcessingStep(id = "mvn", description = "Invoke a separate Maven build process during your processing logic.")
 public class MavenHook implements CDIMojoProcessingStep {
   @Inject
   private Logger log;

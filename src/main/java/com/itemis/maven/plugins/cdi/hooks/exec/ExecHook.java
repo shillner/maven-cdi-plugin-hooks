@@ -16,7 +16,7 @@ import com.itemis.maven.plugins.cdi.annotations.ProcessingStep;
 import com.itemis.maven.plugins.cdi.annotations.RollbackOnError;
 import com.itemis.maven.plugins.cdi.logging.Logger;
 
-@ProcessingStep(id = "exec")
+@ProcessingStep(id = "exec", description = "Executes shell commands such as shell or batch script execution.")
 public class ExecHook implements CDIMojoProcessingStep {
   @Inject
   private Logger log;

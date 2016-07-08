@@ -29,7 +29,7 @@ import com.itemis.maven.plugins.cdi.annotations.ProcessingStep;
 import com.itemis.maven.plugins.cdi.annotations.RollbackOnError;
 import com.itemis.maven.plugins.cdi.logging.Logger;
 
-@ProcessingStep(id = "httpRequest")
+@ProcessingStep(id = "httpRequest", description = "Send HTTP requests such as POST, PUT or GET as part of your processing logic.", requiresOnline = true)
 public class HttpRequestHook implements CDIMojoProcessingStep {
   private static final String KEY_METHOD = "method";
   private static final String KEY_URL = "url";
