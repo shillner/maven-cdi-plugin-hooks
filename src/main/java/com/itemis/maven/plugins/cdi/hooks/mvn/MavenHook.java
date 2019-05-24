@@ -1,6 +1,7 @@
 package com.itemis.maven.plugins.cdi.hooks.mvn;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,10 +59,11 @@ public class MavenHook implements CDIMojoProcessingStep {
     List<String> profiles = Lists.newArrayList();
     List<String> opts = Lists.newArrayList();
 
-    List<String> tokens = Splitter.on(' ').splitToList(data);
-    for (String token : tokens) {
-      if (token.startsWith("-P")) {
-        profiles.add(token);
+    Iterator<String> tokens = Splitter.on(' ').splitToList(data).iterator();
+    while (tokens.hasNext()) {
+      String token = tokens.next(); 
+      if ("-P".equals(token) || "--activate-profiles".equals(token)) {
+        profiles.add(tokens.next());
       } else if (token.startsWith("-D")) {
         opts.add(token);
       } else {
